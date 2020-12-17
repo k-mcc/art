@@ -25,8 +25,8 @@ public class Painting extends JFrame {
    private final ButtonGroup buttonGroup = new ButtonGroup();
 
 
-   private List<Element> lines = new ArrayList<Element>();
-   private Element currentLine;
+   private List<Paintbrush> lines = new ArrayList<Paintbrush>();
+   private Paintbrush currentLine;
    private List<Color> colors = new ArrayList<Color>();
 
    protected class ColorListener implements ActionListener{
@@ -52,7 +52,7 @@ public class Painting extends JFrame {
       canvas.addMouseListener(new MouseAdapter() {
          @Override
          public void mousePressed(MouseEvent evt) {
-            currentLine = new Element();
+            currentLine = new Paintbrush();
             lines.add(currentLine);
             colors.add(lineColor);
             currentLine.addPoint(evt.getX(), evt.getY());
@@ -100,7 +100,7 @@ public class Painting extends JFrame {
          super.paintComponent(g);
          for (int i = 0; i < lines.size(); i++) {
         	 	Color c = colors.get(i);
-        	 	Element line = lines.get(i);
+        	 	Paintbrush line = lines.get(i);
         	 	g.setColor(c);
         	 	line.draw(g);
          }
