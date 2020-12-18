@@ -24,12 +24,14 @@ import java.util.Scanner;
 public class Interactive {
     public static void main(String[] args) {
 
+      int numWords = 5; // number of words to be entered and displayed
+
     	Scanner console = new Scanner(System.in);
     	String input = console.next();
     	ArrayList<String> inputs = new ArrayList<String>();
     	inputs.add(input);
 
-    	for (int i = 0; i < 4; i++) {
+    	for (int i = 0; i < numWords; i++) {
     		inputs.add(console.next());
     	}
 
@@ -50,11 +52,9 @@ class Program {
 
     void run(ArrayList<String> inputs) {
 
-
-
     	words = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < inputs.size(); i++) {
             Word word = new Word(
             		inputs.get(i),
                     (int) Math.floor(Math.random() * windowWidth),
@@ -98,28 +98,6 @@ class Program {
             mainFrame.repaint();
         }
 
-    }
-
-    public void addWord(String text) {
-    	Word word = new Word(
-        		text,
-                /* Random positions from 0 to windowWidth or windowHeight */
-                (int) Math.floor(Math.random() * windowWidth),
-                (int) Math.floor(Math.random() * windowHeight),
-                /* Random size from 10 to 30 */
-                (int) Math.floor(Math.random() * 20) + 10,
-                /* Random RGB colors*/
-                new Color(
-                        (int) Math.floor((Math.random() * 256)),
-                        (int) Math.floor((Math.random() * 256)),
-                        (int) Math.floor((Math.random() * 256))
-                ),
-                /* Random velocities from -5 to 5 */
-                (int) Math.floor((Math.random() * 8) - 4),
-                (int) Math.floor((Math.random() * 8) - 4)
-        );
-
-        words.add(word);
     }
 
     class DrawPanel extends JPanel {
