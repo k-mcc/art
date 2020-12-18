@@ -247,7 +247,7 @@ class Box {
         }
 
         public void paint(Graphics g) {
-        	g.setFont(new Font("Dialog", Font.BOLD, this.size));
+        	g.setFont(new Font("Didot", Font.PLAIN, this.size));
         	g.setColor(this.color);
         	g.drawString(this.text, this.posX, this.posY);
         }
