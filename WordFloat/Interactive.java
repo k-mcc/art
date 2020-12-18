@@ -2,64 +2,72 @@
 
 * @author katemccarthy
 
-* 12/17/2020
+* 12/18/2020
 
-* WordFloat mobilizes Strings into words of random colors floating at different velocities in the GUI.
+* Interactive class is an interactive version of WordFloat in which user inputs are converted into floating words in the GUI.
 
 */
-
-package WordFloat;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 import javax.swing.border.EmptyBorder;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Scanner;
 
-public class WordFloat {
+public class Interactive {
     public static void main(String[] args) {
-        Program program = new Program();
-        program.run();
+
+    	Scanner console = new Scanner(System.in);
+    	String input = console.next();
+    	ArrayList<String> inputs = new ArrayList<String>();
+    	inputs.add(input);
+
+    	for (int i = 0; i < 4; i++) {
+    		inputs.add(console.next());
+    	}
+
+    	Program program = new Program();
+        program.run(inputs);
     }
 }
 
 class Program {
+
     private JFrame mainFrame;
     private DrawPanel drawPanel;
     private java.util.List<Word> words;
 
     private int windowWidth = 640;
     private int windowHeight = 480;
-    private String windowLabel = "Word Float";
+    private String windowLabel = "Interactive Word Float";
 
-    void run() {
+    void run(ArrayList<String> inputs) {
 
-        words = new ArrayList<>();
 
-        /* Generate balls */
-        for (int i = 0; i < 3; i++) {
+
+    	words = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
             Word word = new Word(
-            		"word",
-                    /* Random positions from 0 to windowWidth or windowHeight */
+            		inputs.get(i),
                     (int) Math.floor(Math.random() * windowWidth),
                     (int) Math.floor(Math.random() * windowHeight),
-                    /* Random size from 10 to 30 */
+
                     (int) Math.floor(Math.random() * 20) + 10,
-                    /* Random RGB colors*/
+
                     new Color(
                             (int) Math.floor((Math.random() * 256)),
                             (int) Math.floor((Math.random() * 256)),
                             (int) Math.floor((Math.random() * 256))
                     ),
-                    /* Random velocities from -5 to 5 */
+
                     (int) Math.floor((Math.random() * 8) - 4),
                     (int) Math.floor((Math.random() * 8) - 4)
             );
@@ -67,7 +75,6 @@ class Program {
             words.add(word);
         }
 
-        /* Initialize program */
         mainFrame = new JFrame();
         drawPanel = new DrawPanel();
         mainFrame.getContentPane().add(drawPanel);
@@ -76,12 +83,12 @@ class Program {
         mainFrame.setVisible(true);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+
         while (true) {
             for (Word w: words) {
                 w.update();
             }
 
-            /* Give Swing 10 milliseconds to see the update! */
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
@@ -90,6 +97,29 @@ class Program {
 
             mainFrame.repaint();
         }
+
+    }
+
+    public void addWord(String text) {
+    	Word word = new Word(
+        		text,
+                /* Random positions from 0 to windowWidth or windowHeight */
+                (int) Math.floor(Math.random() * windowWidth),
+                (int) Math.floor(Math.random() * windowHeight),
+                /* Random size from 10 to 30 */
+                (int) Math.floor(Math.random() * 20) + 10,
+                /* Random RGB colors*/
+                new Color(
+                        (int) Math.floor((Math.random() * 256)),
+                        (int) Math.floor((Math.random() * 256)),
+                        (int) Math.floor((Math.random() * 256))
+                ),
+                /* Random velocities from -5 to 5 */
+                (int) Math.floor((Math.random() * 8) - 4),
+                (int) Math.floor((Math.random() * 8) - 4)
+        );
+
+        words.add(word);
     }
 
     class DrawPanel extends JPanel {
@@ -155,16 +185,12 @@ class Program {
 
         }
 
-        /*void draw(Graphics g) {
-            g.setColor(color);
-            g.fillOval(posX, posY, size, size);
-        }*/
-        public void paint(Graphics g)
-        {
+        public void paint(Graphics g) {
         	g.setFont(new Font("Dialog", Font.PLAIN, 40));
         	g.setColor(this.color);
         	g.drawString(this.text, this.posX, this.posY);
-
         }
+
     }
+
 }
