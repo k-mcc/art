@@ -191,6 +191,8 @@ class Box {
         public void paintComponent(Graphics graphics) {
             super.paintComponent(graphics);
 
+            this.setBackground(Color.black);
+
             for (Word w: words) {
             	w.paint(graphics);
             }
