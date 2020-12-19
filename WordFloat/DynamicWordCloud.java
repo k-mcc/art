@@ -130,12 +130,12 @@ class Box {
     	words = new ArrayList<>();
 
     	for (Entry<String, Integer> e : inputs.entrySet()) {
-
-    		// ensure that the generated velocities are not zero (so all words are moving):
-    		int xVelocity = (int) Math.floor((Math.random() * 4) - 2); // random X axis velocity
-    		while (xVelocity == 0) xVelocity = (int) Math.floor((Math.random() * 4) - 2);
-    		int yVelocity = (int) Math.floor((Math.random() * 4) - 2);  // random Y axis velocity
-    		while (yVelocity == 0) yVelocity = (int) Math.floor((Math.random() * 4) - 2);
+        if (e.getValue() > 1) {
+      		// ensure that the generated velocities are not zero (so all words are moving):
+      		int xVelocity = (int) Math.floor((Math.random() * 4) - 2); // random X axis velocity
+      		while (xVelocity == 0) xVelocity = (int) Math.floor((Math.random() * 4) - 2);
+      		int yVelocity = (int) Math.floor((Math.random() * 4) - 2);  // random Y axis velocity
+      		while (yVelocity == 0) yVelocity = (int) Math.floor((Math.random() * 4) - 2);
 
         	// construct a Word object for each String in the map
             Word word = new Word(
@@ -158,6 +158,7 @@ class Box {
             );
 
             words.add(word);
+          }
         }
 
         mainFrame = new JFrame();
