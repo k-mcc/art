@@ -1,6 +1,10 @@
 import lyricsgenius
 
+<<<<<<< HEAD
 textFile = open("sampleText.txt", "w") # specify directory path to create/modify file
+=======
+textFile = open("/Users/User/sampleText.txt", "w") # specify directory path to create/modify file
+>>>>>>> 0ea1b41b87b502b43c6d287df6cc268c00ad8342
 
 geniusLyrics = lyricsgenius.Genius('API Key', # unique Genius Lyrics API key
                          skip_non_songs=True, excluded_terms=["(Remix)", "(Live)"],
