@@ -6,7 +6,7 @@ geniusLyrics = lyricsgenius.Genius('zMdfaMf33TgkUQygbQN83TxLm0r_3blHu9azr5W-czo3
                          skip_non_songs=True, excluded_terms=["(Remix)", "(Live)"],
                          remove_section_headers=True)
 
-artists = ['Kanye West'] # artists to fetch lyrics from
+artists = ['Tame Impala'] # artists to fetch lyrics from
 
 
 def fetch_lyrics(artists, numSongs):  # fetch lyrics of popular songs (quantity k) of artists

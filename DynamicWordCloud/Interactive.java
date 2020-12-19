@@ -105,6 +105,8 @@ class Program {
         public void paintComponent(Graphics graphics) {
             super.paintComponent(graphics);
 
+            this.setBackground(Color.black);
+
             for (Word w: words) {
                 //w.draw(graphics);
             	w.paint(graphics);
