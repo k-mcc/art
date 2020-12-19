@@ -5,7 +5,7 @@
 * 12/18/2020
 
 * DynamicWordCloud generates a floating word graphic based on a text file.
-* The font sizes of each word in the GUI correlates to its frequency within the text file.
+* The font size of each word in the GUI correlates to its frequency within the text file.
 
 */
 
