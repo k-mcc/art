@@ -1,8 +1,8 @@
 import lyricsgenius
 
-textFile = open("/Users/katemccarthy/Documents/GitHub/art/DynamicWordCloud/sampleText.txt", "w") # specify directory path to create/modify file
+textFile = open("sampleText.txt", "w") # specify directory path to create/modify file
 
-geniusLyrics = lyricsgenius.Genius('zMdfaMf33TgkUQygbQN83TxLm0r_3blHu9azr5W-czo3h_gF_g9rDdS7G_eF1VQl', # unique Genius Lyrics API key
+geniusLyrics = lyricsgenius.Genius('API Key', # unique Genius Lyrics API key
                          skip_non_songs=True, excluded_terms=["(Remix)", "(Live)"],
                          remove_section_headers=True)
 
