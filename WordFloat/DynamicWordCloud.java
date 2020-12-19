@@ -121,8 +121,8 @@ class Box {
     private DrawPanel drawPanel;
     private java.util.List<Word> words;
 
-    private int windowWidth = 640;
-    private int windowHeight = 480;
+    private int windowWidth = 1450;
+    private int windowHeight = 800;
     private String windowLabel = "Interactive Word Float";
 
     void run(Map<String, Integer> inputs) {
