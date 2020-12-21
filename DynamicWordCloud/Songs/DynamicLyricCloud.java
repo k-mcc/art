@@ -9,9 +9,21 @@
 
 */
 
+/**
+
+* @author katemccarthy
+
+* 12/18/2020
+
+* DynamicWordCloud generates a floating word graphic based on a text file.
+* The font size of each word in the GUI correlates to its frequency within the text file.
+
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Map;
 import java.io.FileInputStream;
@@ -20,13 +32,16 @@ import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.Map.Entry;
 
-public class DynamicWordCloud {
+public class DynamicLyricCloud {
+
+	public static int wc;
+
     public static void main(String[] args) {
-    	String fileName = "sampleText.txt";
+    	String fileName = "/Users/katemccarthy/Documents/GitHub/art/DynamicWordCloud/sampleText.txt";
     	Map<String, Integer> words = frequentWords(fileName);
 
     	Box box1 = new Box();
-    	box1.run(words);
+    	box1.run(words,wc);
     }
 
   /**
@@ -37,13 +52,20 @@ public class DynamicWordCloud {
 	 * maps each word in file to the number of times it appears
 	 */
 	public static Map<String, Integer> frequentWords(String fileName) {
-		Map<String, Integer> map = new TreeMap<String, Integer>();
 
+		String[] fillers = {"i","you","me","my","your","and","but","for","the","in",
+				"on","of","with","a","your","i'm","to","i'll","i've","it","that",
+				"that's","it's","its","then","this","than","you'll","is","was",
+				"be","am","when","get","got","go","like","will","oh","do","if","what","just","into","through","there"};
+		java.util.List<String> disregard = Arrays.asList(fillers);
+
+		Map<String, Integer> map = new TreeMap<String, Integer>();
+		wc = 0;
 		try {
 			Scanner input = new Scanner(new FileInputStream(fileName));
 			// while loop, counts individual words
 			while (input.hasNext()) {
-
+				wc += 1;
 				String word = input.next();
 				word = removePunctuation(word);
 
@@ -54,7 +76,7 @@ public class DynamicWordCloud {
 					    repeatedWord = true;
 					}
 				}
-				if (!repeatedWord) map.put(word, 1);
+				if (!repeatedWord && !disregard.contains(word.toLowerCase())) map.put(word, 1);
 			}
 		 } catch (FileNotFoundException e) {
 			 System.out.println("File Not Found: " + fileName);
@@ -125,40 +147,71 @@ class Box {
     private int windowHeight = 800;
     private String windowLabel = "Interactive Word Float";
 
-    void run(Map<String, Integer> inputs) {
+    void run(Map<String, Integer> inputs, int wc) {
 
     	words = new ArrayList<>();
 
     	for (Entry<String, Integer> e : inputs.entrySet()) {
-        if (e.getValue() > 1) {
-      		// ensure that the generated velocities are not zero (so all words are moving):
-      		int xVelocity = (int) Math.floor((Math.random() * 4) - 2); // random X axis velocity
-      		while (xVelocity == 0) xVelocity = (int) Math.floor((Math.random() * 4) - 2);
-      		int yVelocity = (int) Math.floor((Math.random() * 4) - 2);  // random Y axis velocity
-      		while (yVelocity == 0) yVelocity = (int) Math.floor((Math.random() * 4) - 2);
 
-        	// construct a Word object for each String in the map
-            Word word = new Word(
-            		e.getKey(), // String
+    		//calculate the appropriate font size.
+			int fontSize = 11;
 
-                    (int) Math.floor(Math.random() * windowWidth),  // random initial position on X axis
-                    (int) Math.floor(Math.random() * windowHeight), // random initial position on Y axis
+			double p = ((double)e.getValue()/(double)wc) * 100;
+			/* p represents the relative frequency of the word within the text
+			as a percentage of the total word count*/
 
-                    (e.getValue() * (int)Math.floor(Math.random() * 5) + 11), // font size, based on word frequency
-                    //TODO: make font size relative using standard deviation
+	    if (p > 0.3) {
+	    		if (p < 0.6)	fontSize = 24;
+	    		else if (p < 1) fontSize = 30;
+	    		else if (p < 1.5) fontSize = 50;
+	    		else if (p < 2) fontSize = 70;
+	    		else if (p < 3.5) fontSize = 90;
+	    		else if (p < 4) fontSize = 110;
+	    		else if (p < 6) fontSize = 130;
+	    		else if (p > 6) fontSize = 150;
 
-                    new Color(
-                            (int) Math.floor((Math.random() * 256)), // random color
-                            (int) Math.floor((Math.random() * 256)),
-                            (int) Math.floor((Math.random() * 256))
-                    ),
+	    		int xVelocity;
+	    		int yVelocity;
 
-                    xVelocity,
-                    yVelocity
-            );
+	    		if (fontSize < 100) {
+		      		// ensure that the generated velocities are not zero (so all words are moving):
+		      		xVelocity = (int) Math.floor((Math.random() * 3) - 1); // random X axis velocity
+		      		while (xVelocity == 0) xVelocity = (int) Math.floor((Math.random() * 3) - 1);
+		      		yVelocity = (int) Math.floor((Math.random() * 3) - 1);  // random Y axis velocity
+		      		while (yVelocity == 0) yVelocity = (int) Math.floor((Math.random() * 3) - 1);
+	    		} else {
+		      		// ensure that the generated velocities are not zero (so all words are moving):
+		      		xVelocity = (int) Math.floor((Math.random() * 10) - 5); // random X axis velocity
+		      		while (xVelocity == 0) xVelocity = (int) Math.floor((Math.random() * 10) - 5);
+		      		yVelocity = (int) Math.floor((Math.random() * 10) - 5);  // random Y axis velocity
+		      		while (yVelocity == 0) yVelocity = (int) Math.floor((Math.random() * 10) - 5);
+	    		}
 
-            words.add(word);
-          }
+	      		//generate parts of a random color:
+	      		int rNum = (int) Math.floor((Math.random() * 256));
+	      		int bNum = (int) Math.floor((Math.random() * 256));
+	      		int gNum = (int) Math.floor((Math.random() * 256));
+
+	        	// construct a Word object for each String in the map
+	            Word word = new Word(
+	            		e.getKey(), // String
+
+	                    (int) Math.floor(Math.random() * windowWidth),  // random initial position on X axis
+	                    (int) Math.floor(Math.random() * windowHeight), // random initial position on Y axis
+
+	                    fontSize, // font size, based on word frequency
+	                    //TODO: make font size relative using standard deviation
+
+	                    rNum, // RGB color variables
+	                    gNum,
+	                    bNum,
+
+	                    xVelocity,
+	                    yVelocity
+	            );
+
+	            words.add(word);
+	          }
         }
 
         mainFrame = new JFrame();
@@ -176,7 +229,7 @@ class Box {
             }
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -202,18 +255,32 @@ class Box {
 
     class Word {
         private int posX, posY, size;
-        private Color color;
+        //private Color color;
+        //variables used to assign random colors
+        private int rNum;
+        private int gNum;
+        private int bNum;
+        private int modR;
+        private int modG;
+        private int modB;
         private String text;
 
         private int vx = 5;
         private int vy = 5;
 
-        public Word(String text, int posX, int posY, int size, Color color, int vx, int vy) {
+        public Word(String text, int posX, int posY, int size, int rNum, int gNum, int bNum, int vx, int vy) { //Color color
             this.text = text;
         	this.posX = posX;
             this.posY = posY;
             this.size = size;
-            this.color = color;
+            //this.color = color;
+          //variables used to assign random colors
+            this.rNum = rNum;
+            this.gNum = gNum;
+            this.bNum = bNum;
+            this.modR = 1;
+            this.modG = 1;
+            this.modB = 1;
             this.vx = vx;
             this.vy = vy;
         }
@@ -251,7 +318,19 @@ class Box {
 
         public void paint(Graphics g) {
         	g.setFont(new Font("Didot", Font.PLAIN, this.size));
-        	g.setColor(this.color);
+
+        	if (this.rNum + modR >= 256 || this.rNum + modR < 0) modR *= -1;
+        	this.rNum += modR;
+        	if (this.gNum + modG >= 256 || this.gNum + modG < 0) modG *= -1;
+        	this.gNum += modG;
+        	if (this.bNum + modB >= 256 || this.bNum + modB < 0) modB *= -1;
+        	this.bNum += modB;
+
+        	g.setColor(new Color(
+                    this.rNum, // random color
+                    this.gNum,
+                    this.bNum
+            )); //this.color
         	g.drawString(this.text, this.posX, this.posY);
         }
 

@@ -1,12 +1,12 @@
 import lyricsgenius
 
-textFile = open("sampleText.txt", "w") # specify directory path to create/modify file
+textFile = open("/Users/katemccarthy/Documents/GitHub/art/DynamicWordCloud/sampleText.txt", "w") # specify directory path to create/modify file
 
-geniusLyrics = lyricsgenius.Genius('API Key', # unique Genius Lyrics API key
+geniusLyrics = lyricsgenius.Genius('zMdfaMf33TgkUQygbQN83TxLm0r_3blHu9azr5W-czo3h_gF_g9rDdS7G_eF1VQl', # unique Genius Lyrics API key
                          skip_non_songs=True, excluded_terms=["(Remix)", "(Live)"],
                          remove_section_headers=True)
 
-artists = ['Tame Impala'] # artists to fetch lyrics from
+artists = ['BROCKHAMPTON'] # artists to fetch lyrics from
 
 
 def fetch_lyrics(artists, numSongs):  # fetch lyrics of popular songs (quantity k) of artists
@@ -23,4 +23,4 @@ def fetch_lyrics(artists, numSongs):  # fetch lyrics of popular songs (quantity 
 
 
 
-fetch_lyrics(artists, 3)
+fetch_lyrics(artists, 10)
