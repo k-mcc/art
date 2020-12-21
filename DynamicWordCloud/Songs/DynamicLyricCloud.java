@@ -56,7 +56,17 @@ public class DynamicLyricCloud {
 		String[] fillers = {"i","you","me","my","your","and","but","for","the","in",
 				"on","of","with","a","your","i'm","to","i'll","i've","it","that",
 				"that's","it's","its","then","this","than","you'll","is","was",
-				"be","am","when","get","got","go","like","will","oh","do","if","what","just","into","through","there"};
+				"be","am","when","get","got","go","like","will","oh","do","if","what",
+        "just","into","through","there","don't","have","when","where","how","who"
+        ,"they","been","take","had","want","we're","up","no","you're","cause",
+        "because","so","about","day","back","why","take","give","out","over",
+        "again","by","some","something","say","gotta","let","happen","think",
+        "thought","make","call","somewhere","we","are","going","'cause","till",
+        "only","just","can","can't","cannot","you've","everything's","everything",
+        "ask","let's","from","towards","back","under","right","left","leave",
+        "before","after","since","or","without","&","see","saw","an","all",
+        "know","even","he","she","her","it","him","them","they","their","theirs"
+        ,"there's","there","here","'til","I'd","until"};
 		java.util.List<String> disregard = Arrays.asList(fillers);
 
 		Map<String, Integer> map = new TreeMap<String, Integer>();
@@ -65,9 +75,8 @@ public class DynamicLyricCloud {
 			Scanner input = new Scanner(new FileInputStream(fileName));
 			// while loop, counts individual words
 			while (input.hasNext()) {
-				wc += 1;
-				String word = input.next();
-				word = removePunctuation(word);
+        String word = input.next();
+        word = removePunctuation(word);
 
 				boolean repeatedWord = false;
 				for (Entry<String, Integer> e : map.entrySet()) {
@@ -76,7 +85,10 @@ public class DynamicLyricCloud {
 					    repeatedWord = true;
 					}
 				}
-				if (!repeatedWord && !disregard.contains(word.toLowerCase()) && !word.equals("<|endoftext|>")) map.put(word, 1);
+				if (!repeatedWord && !disregard.contains(word.toLowerCase()) && !word.equals("<|endoftext|>")) {
+          map.put(word, 1);
+          wc += 1;
+        }
 			}
 		 } catch (FileNotFoundException e) {
 			 System.out.println("File Not Found: " + fileName);
