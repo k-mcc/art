@@ -37,7 +37,7 @@ public class DynamicLyricCloud {
 	public static int wc;
 
     public static void main(String[] args) {
-    	String fileName = "/Users/katemccarthy/Documents/GitHub/art/DynamicWordCloud/sampleText.txt";
+    	String fileName = "sampleText.txt";
     	Map<String, Integer> words = frequentWords(fileName);
 
     	Box box1 = new Box();
@@ -76,7 +76,7 @@ public class DynamicLyricCloud {
 					    repeatedWord = true;
 					}
 				}
-				if (!repeatedWord && !disregard.contains(word.toLowerCase())) map.put(word, 1);
+				if (!repeatedWord && !disregard.contains(word.toLowerCase()) && !word.equals("<|endoftext|>")) map.put(word, 1);
 			}
 		 } catch (FileNotFoundException e) {
 			 System.out.println("File Not Found: " + fileName);
