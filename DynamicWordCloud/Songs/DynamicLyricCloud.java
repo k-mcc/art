@@ -56,7 +56,10 @@ public class DynamicLyricCloud {
         "before","after","since","or","without","&","see","saw","an","all",
         "know","even","he","she","her","it","him","them","they","their","theirs"
         ,"there's","there","here","'til","i'd","until","yeah","ooh","na","you'd",
-				"anyone","la","da","oh","ooh-ooh"};
+				"anyone","la","da","oh","ooh-ooh","she's","another","haven't","would",
+				"wouldn't","ga","ah","at","must","he's","still","not","bring","hey",
+				"wanna","try","one","gonna","way","ready","now","good","having",
+				"trying","tried"};
 		java.util.List<String> disregard = Arrays.asList(fillers);
 
 		Map<String, Integer> map = new TreeMap<String, Integer>();
@@ -162,20 +165,21 @@ class Box {
 			/* p represents the relative frequency of the word within the text
 			as a percentage of the total word count*/
 
-	    if (p > 1) {
-	    		if (p < 2)	fontSize = 30;
+	    if (e.getValue() > 5 && p > 0.5) {
+					if (p < 1) fontSize = 25;
+	    	  else if (p < 2)	fontSize = 30;
 	    		else if (p < 2.5) fontSize = 40;
-	    		else if (p < 3) fontSize = 60;
-	    		else if (p < 3.5) fontSize = 70;
-	    		else if (p < 4) fontSize = 80;
-	    		else if (p < 4.5) fontSize = 90;
-	    		else if (p < 5.5) fontSize = 110;
-	    		else if (p > 5.5) fontSize = 120;
+	    		else if (p < 3) fontSize = 50;
+	    		else if (p < 3.5) fontSize = 80;
+	    		else if (p < 4.5) fontSize = 85;
+					else if (p < 5) fontSize = 90;
+	    		else if (p < 5.5) fontSize = 100;
+	    		else if (p > 5.5) fontSize = 110;
 
 	    		int xVelocity;
 	    		int yVelocity;
 
-	    		if (fontSize < 60) {
+	    		if (fontSize < 85) {
 		      		// ensure that the generated velocities are not zero (so all words are moving):
 		      		xVelocity = (int) Math.floor((Math.random() * 3) - 1); // random X axis velocity
 		      		while (xVelocity == 0) xVelocity = (int) Math.floor((Math.random() * 3) - 1);
