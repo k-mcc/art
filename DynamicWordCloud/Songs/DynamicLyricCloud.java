@@ -2,18 +2,7 @@
 
 * @author katemccarthy
 
-* 12/18/2020
-
-* DynamicWordCloud generates a floating word graphic based on a text file.
-* The font size of each word in the GUI correlates to its frequency within the text file.
-
-*/
-
-/**
-
-* @author katemccarthy
-
-* 12/18/2020
+* December 2020
 
 * DynamicWordCloud generates a floating word graphic based on a text file.
 * The font size of each word in the GUI correlates to its frequency within the text file.
@@ -37,7 +26,7 @@ public class DynamicLyricCloud {
 	public static int wc;
 
     public static void main(String[] args) {
-    	String fileName = "sampleText.txt";
+    	String fileName = "/Users/katemccarthy/Documents/GitHub/art/DynamicWordCloud/sampleText.txt";
     	Map<String, Integer> words = frequentWords(fileName);
 
     	Box box1 = new Box();
@@ -172,32 +161,32 @@ class Box {
 			/* p represents the relative frequency of the word within the text
 			as a percentage of the total word count*/
 
-	    if (p > 0.3) {
-	    		if (p < 0.6)	fontSize = 24;
-	    		else if (p < 1) fontSize = 30;
-	    		else if (p < 1.5) fontSize = 50;
-	    		else if (p < 2) fontSize = 70;
-	    		else if (p < 3.5) fontSize = 90;
-	    		else if (p < 4) fontSize = 110;
-	    		else if (p < 6) fontSize = 130;
-	    		else if (p > 6) fontSize = 150;
+	    if (p > 1) {
+	    		if (p < 2)	fontSize = 40;
+	    		else if (p < 2.5) fontSize = 50;
+	    		else if (p < 3) fontSize = 60;
+	    		else if (p < 3.5) fontSize = 70;
+	    		else if (p < 4) fontSize = 80;
+	    		else if (p < 4.5) fontSize = 90;
+	    		else if (p < 5.5) fontSize = 110;
+	    		else if (p > 5.5) fontSize = 130;
 
 	    		int xVelocity;
 	    		int yVelocity;
 
-	    		if (fontSize < 100) {
+	    		/*if (fontSize < 90) {
 		      		// ensure that the generated velocities are not zero (so all words are moving):
 		      		xVelocity = (int) Math.floor((Math.random() * 3) - 1); // random X axis velocity
 		      		while (xVelocity == 0) xVelocity = (int) Math.floor((Math.random() * 3) - 1);
 		      		yVelocity = (int) Math.floor((Math.random() * 3) - 1);  // random Y axis velocity
 		      		while (yVelocity == 0) yVelocity = (int) Math.floor((Math.random() * 3) - 1);
-	    		} else {
+	    		} else {*/
 		      		// ensure that the generated velocities are not zero (so all words are moving):
 		      		xVelocity = (int) Math.floor((Math.random() * 10) - 5); // random X axis velocity
 		      		while (xVelocity == 0) xVelocity = (int) Math.floor((Math.random() * 10) - 5);
 		      		yVelocity = (int) Math.floor((Math.random() * 10) - 5);  // random Y axis velocity
 		      		while (yVelocity == 0) yVelocity = (int) Math.floor((Math.random() * 10) - 5);
-	    		}
+	    		/*}*/
 
 	      		//generate parts of a random color:
 	      		int rNum = (int) Math.floor((Math.random() * 256));
@@ -241,7 +230,7 @@ class Box {
             }
 
             try {
-                Thread.sleep(20);
+                Thread.sleep(30);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

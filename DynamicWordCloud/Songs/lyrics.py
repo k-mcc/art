@@ -1,12 +1,16 @@
+# Kate Mccarthy
+# December 2020
+# fetches most popular songs of the requested artists from Genius Lyrics API
+
 import lyricsgenius
 
 textFile = open("/Users/katemccarthy/Documents/GitHub/art/DynamicWordCloud/sampleText.txt", "w") # specify directory path to create/modify file
 
-geniusLyrics = lyricsgenius.Genius('zMdfaMf33TgkUQygbQN83TxLm0r_3blHu9azr5W-czo3h_gF_g9rDdS7G_eF1VQl', # unique Genius Lyrics API key
-                         skip_non_songs=True, excluded_terms=["(Remix)", "(Live)"],
+geniusLyrics = lyricsgenius.Genius('API Key', # unique Genius Lyrics API key
+                         skip_non_songs=True, excluded_terms=["(Remix)", "(Live)", "(Version)", "(Versión)"],
                          remove_section_headers=True)
 
-artists = ['ARTIST_NAME'] # artists to fetch lyrics from
+artists = ['Queen'] # artists to fetch lyrics from
 
 
 def fetch_lyrics(artists, numSongs):  # fetch lyrics of popular songs (quantity k) of artists
@@ -19,8 +23,8 @@ def fetch_lyrics(artists, numSongs):  # fetch lyrics of popular songs (quantity 
             songsFetched += 1
             print(f"Songs fetched : {len(s)}")
         except:
-            print(f"some exception at {artist}: {songsFetched}")
+            print("")
 
 
 
-fetch_lyrics(artists, 10)
+fetch_lyrics(artists, 3)
