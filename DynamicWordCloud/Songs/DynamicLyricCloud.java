@@ -55,7 +55,8 @@ public class DynamicLyricCloud {
         "ask","let's","from","towards","back","under","right","left","leave",
         "before","after","since","or","without","&","see","saw","an","all",
         "know","even","he","she","her","it","him","them","they","their","theirs"
-        ,"there's","there","here","'til","I'd","until"};
+        ,"there's","there","here","'til","i'd","until","yeah","ooh","na","you'd",
+				"anyone","la","da","oh","ooh-ooh"};
 		java.util.List<String> disregard = Arrays.asList(fillers);
 
 		Map<String, Integer> map = new TreeMap<String, Integer>();
@@ -162,31 +163,31 @@ class Box {
 			as a percentage of the total word count*/
 
 	    if (p > 1) {
-	    		if (p < 2)	fontSize = 40;
-	    		else if (p < 2.5) fontSize = 50;
+	    		if (p < 2)	fontSize = 30;
+	    		else if (p < 2.5) fontSize = 40;
 	    		else if (p < 3) fontSize = 60;
 	    		else if (p < 3.5) fontSize = 70;
 	    		else if (p < 4) fontSize = 80;
 	    		else if (p < 4.5) fontSize = 90;
 	    		else if (p < 5.5) fontSize = 110;
-	    		else if (p > 5.5) fontSize = 130;
+	    		else if (p > 5.5) fontSize = 120;
 
 	    		int xVelocity;
 	    		int yVelocity;
 
-	    		/*if (fontSize < 90) {
+	    		if (fontSize < 60) {
 		      		// ensure that the generated velocities are not zero (so all words are moving):
 		      		xVelocity = (int) Math.floor((Math.random() * 3) - 1); // random X axis velocity
 		      		while (xVelocity == 0) xVelocity = (int) Math.floor((Math.random() * 3) - 1);
 		      		yVelocity = (int) Math.floor((Math.random() * 3) - 1);  // random Y axis velocity
 		      		while (yVelocity == 0) yVelocity = (int) Math.floor((Math.random() * 3) - 1);
-	    		} else {*/
+	    		} else {
 		      		// ensure that the generated velocities are not zero (so all words are moving):
 		      		xVelocity = (int) Math.floor((Math.random() * 10) - 5); // random X axis velocity
 		      		while (xVelocity == 0) xVelocity = (int) Math.floor((Math.random() * 10) - 5);
 		      		yVelocity = (int) Math.floor((Math.random() * 10) - 5);  // random Y axis velocity
 		      		while (yVelocity == 0) yVelocity = (int) Math.floor((Math.random() * 10) - 5);
-	    		/*}*/
+	    		}
 
 	      		//generate parts of a random color:
 	      		int rNum = (int) Math.floor((Math.random() * 256));
