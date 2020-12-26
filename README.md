@@ -14,9 +14,9 @@ String fileName = "sampleText.txt";
 3. Run DynamicWordCloud.java
 
 ## Dynamic Word Cloud with Song Lyrics
-Dynamic Word Cloud can connect to the Genius Lyrics API to generate the same visuals for song lyrics.
+Dynamic _Lyric_ Cloud can connect to the Genius Lyrics API to generate the same visuals for song lyrics.
 
-***How It Works:** lyrics.py takes the names of musical artists and writes the lyrics of their three most popular songs into sampleText.txt. Then, DynamicWordCloud.java reads from sampleText.txt and generates a dynamic cloud of the words in the fetched lyrics, organized by their frequency.*
+***How It Works:** lyrics.py takes the names of musical artists and writes the lyrics of their three most popular songs into sampleText.txt. Then, DynamicLyricCloud.java reads from sampleText.txt and generates a dynamic cloud of the words in the fetched lyrics, organized by their frequency.*
 
 #### Run It Yourself:
 1. Navigate to the DynamicWordCloud folder.
