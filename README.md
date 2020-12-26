@@ -15,7 +15,7 @@ String fileName = "sampleText.txt";
 3. Run DynamicWordCloud.java
 
 ## Dynamic Lyric Cloud
-# *What music looks like*
+### *What music looks like*
 
 Dynamic Lyric Cloud can connect to the Genius Lyrics API to generate the same visuals for song lyrics.
 
