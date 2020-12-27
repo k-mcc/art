@@ -27,6 +27,7 @@ Dynamic Lyric Cloud can connect to the Genius Lyrics API to generate the same vi
 2. Copy or download DynamicLyricCloud.java, lyrics.py, and sampleText.txt into a folder on your device.
 
 3. Assuming python3 and pip are already installed and up-to-date on your device, install the latest version of [lyricsgenius](https://lyricsgenius.readthedocs.io/en/master/) (a Python client for the Genius.com API) from GitHub through this command:
+
 `pip3 install --user git+https://github.com/johnwmillr/LyricsGenius.git`
 
 4. Get API Key from Genius Lyrics
