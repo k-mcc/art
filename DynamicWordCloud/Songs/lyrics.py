@@ -6,11 +6,11 @@ import lyricsgenius
 
 textFile = open("/Users/katemccarthy/Documents/GitHub/art/DynamicWordCloud/sampleText.txt", "w") # specify directory path to create/modify file
 
-geniusLyrics = lyricsgenius.Genius('SECRET_API_KEY', # unique Genius Lyrics API key
+geniusLyrics = lyricsgenius.Genius('', # unique Genius Lyrics API key
                          skip_non_songs=True, excluded_terms=["(Remix)", "(Live)", "(Version)", "(Versión)"],
                          remove_section_headers=True)
 
-artists = ['Queen'] # artists to fetch lyrics from
+artists = ['Alicia Keys'] # artists to fetch lyrics from
 
 
 def fetch_lyrics(artists, numSongs):  # fetch lyrics of popular songs (quantity k) of artists
